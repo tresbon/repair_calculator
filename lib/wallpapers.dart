@@ -30,31 +30,27 @@ class _WallpapersState extends State<Wallpapers> {
           children: [
             Text("Длина"),
             TextField(
-              controller: _lengthController,
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
               keyboardType: TextInputType.number,
               onChanged: (s) => {
-                setState(() {_length = double.tryParse(s ?? "0");})
+                setState(() {_length = double.tryParse(s) ?? 0;})
               },
             ),
             Text("Ширина"),
             TextField(
-              controller: _widthController,
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
               keyboardType: TextInputType.number,
               onChanged: (s) => {
                 setState(() {
-                  String text = s ?? "0";
-                  _width = double.tryParse(text);})
+                  _width = double.tryParse(s) ?? 0;})
               },
             ),
             Text("Высота"),
             TextField(
-              controller: _heightController,
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
               keyboardType: TextInputType.number,
               onChanged: (s) => {
-                setState(() {_height = double.tryParse(s ?? "0");})
+                setState(() {_height = double.tryParse(s ?? "0") ?? 0;})
               },
             ),
             Text("Площадь стен"),
