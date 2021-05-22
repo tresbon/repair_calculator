@@ -13,6 +13,8 @@ class _WallpapersState extends State<Wallpapers> {
   TextEditingController _widthController = TextEditingController(text: "0");
   TextEditingController _heightController = TextEditingController(text: "0");
   TextEditingController _lengthController = TextEditingController(text: "0");
+  double wallpapersWidth = 0.53;
+  double wallpapersLength = 10;
   double result;
 
   String getWallsSquare(double width, double length, double height) =>
@@ -52,6 +54,56 @@ class _WallpapersState extends State<Wallpapers> {
               onChanged: (s) => {
                 setState(() {_height = double.tryParse(s ?? "0") ?? 0;})
               },
+            ),
+            Text("Ширина рулона"),
+            ListTile(
+              title: Text("0.53"),
+              leading: Radio(
+                value: 0.53,
+                groupValue: wallpapersWidth,
+                onChanged: (double value) {
+                  setState(() {
+                    wallpapersWidth = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text("1.06"),
+              leading: Radio(
+                value: 1.06,
+                groupValue: wallpapersWidth,
+                onChanged: (double value) {
+                  setState(() {
+                    wallpapersWidth = value;
+                  });
+                },
+              ),
+            ),
+            Text("Ширина рулона"),
+            ListTile(
+              title: Text("10"),
+              leading: Radio(
+                value: 10.0,
+                groupValue: wallpapersLength,
+                onChanged: (double value) {
+                  setState(() {
+                    wallpapersLength = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text("25"),
+              leading: Radio(
+                value: 25.0,
+                groupValue: wallpapersLength,
+                onChanged: (double value) {
+                  setState(() {
+                    wallpapersLength = value;
+                  });
+                },
+              ),
             ),
             Text("Площадь стен"),
             Center(
