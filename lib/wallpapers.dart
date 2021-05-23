@@ -10,16 +10,21 @@ class _WallpapersState extends State<Wallpapers> {
   double _width = 0;
   double _length = 0;
   double _height = 0;
-  TextEditingController _widthController = TextEditingController(text: "0");
-  TextEditingController _heightController = TextEditingController(text: "0");
-  TextEditingController _lengthController = TextEditingController(text: "0");
   double wallpapersWidth = 0.53;
   double wallpapersLength = 10;
-  double result;
   bool inJoint = false;
 
-  String getWallsSquare(double width, double length, double height) =>
-      (2 * (width + length) * height).toStringAsFixed(2);
+
+  int stripesFromRoll() => (_height / wallpapersLength).floor();
+
+  double wallsLength() => 2 * (_width + _length);
+
+  int neededStripes() => (wallsLength() / wallpapersWidth).ceil();
+
+  int neededRolls() =>
+      inJoint
+          ? (neededStripes() / ((stripesFromRoll() - 1) > 0 ? (stripesFromRoll() - 1) : 1)).ceil()
+      : (neededStripes() / (stripesFromRoll() > 0 ? stripesFromRoll() : 1)).ceil();
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +38,44 @@ class _WallpapersState extends State<Wallpapers> {
           children: [
             Text("Длина"),
             TextField(
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(
+                    RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
+              ],
               keyboardType: TextInputType.number,
-              onChanged: (s) => {
-                setState(() {_length = double.tryParse(s) ?? 0;})
+              onChanged: (s) =>
+              {
+                setState(() {
+                  _length = double.tryParse(s) ?? 0;
+                })
               },
             ),
             Text("Ширина"),
             TextField(
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(
+                    RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
+              ],
               keyboardType: TextInputType.number,
-              onChanged: (s) => {
+              onChanged: (s) =>
+              {
                 setState(() {
-                  _width = double.tryParse(s) ?? 0;})
+                  _width = double.tryParse(s) ?? 0;
+                })
               },
             ),
             Text("Высота"),
             TextField(
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(
+                    RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
+              ],
               keyboardType: TextInputType.number,
-              onChanged: (s) => {
-                setState(() {_height = double.tryParse(s ?? "0") ?? 0;})
+              onChanged: (s) =>
+              {
+                setState(() {
+                  _height = double.tryParse(s ?? "0") ?? 0;
+                })
               },
             ),
             Text("Ширина рулона"),
@@ -111,17 +133,17 @@ class _WallpapersState extends State<Wallpapers> {
               leading: Checkbox(
                 value: inJoint,
                 onChanged: (
-                    (bool value) {
+                        (bool value) {
                       setState(() {
                         inJoint = value;
                       });
                     }
                 ),
               ),
-            )
+            ),
             Text("Площадь стен"),
             Center(
-              child: Text(getWallsSquare(_width,_length,_height)),
+              child: Text(neededRolls().toString()),
             )
           ],
         ),
