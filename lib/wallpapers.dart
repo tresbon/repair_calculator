@@ -16,6 +16,7 @@ class _WallpapersState extends State<Wallpapers> {
   double wallpapersWidth = 0.53;
   double wallpapersLength = 10;
   double result;
+  bool inJoint = false;
 
   String getWallsSquare(double width, double length, double height) =>
       (2 * (width + length) * height).toStringAsFixed(2);
@@ -105,6 +106,19 @@ class _WallpapersState extends State<Wallpapers> {
                 },
               ),
             ),
+            ListTile(
+              title: Text("Склейка в стык?"),
+              leading: Checkbox(
+                value: inJoint,
+                onChanged: (
+                    (bool value) {
+                      setState(() {
+                        inJoint = value;
+                      });
+                    }
+                ),
+              ),
+            )
             Text("Площадь стен"),
             Center(
               child: Text(getWallsSquare(_width,_length,_height)),
