@@ -14,18 +14,15 @@ class _WallpapersState extends State<Wallpapers> {
   double wallpapersLength = 10;
   bool inJoint = false;
 
-  int stripesFromRoll() => (_height / wallpapersLength).floor();
+  int stripesFromRoll() => (_height != 0 && _width != 0 && _length != 0) ?
+      (wallpapersLength/_height - (inJoint ? 1:0)).ceil() : 0;
 
   double wallsLength() => 2 * (_width + _length);
 
   int neededStripes() => (wallsLength() / wallpapersWidth).ceil();
 
-  int neededRolls() => inJoint
-      ? (neededStripes() /
-              ((stripesFromRoll() - 1) > 0 ? (stripesFromRoll() - 1) : 1))
-          .ceil()
-      : (neededStripes() / (stripesFromRoll() > 0 ? stripesFromRoll() : 1))
-          .ceil();
+  int neededRolls() => stripesFromRoll() != 0 ?
+      (neededStripes()/stripesFromRoll()).ceil() : 0;
 
   @override
   Widget build(BuildContext context) {
