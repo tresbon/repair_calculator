@@ -14,17 +14,18 @@ class _WallpapersState extends State<Wallpapers> {
   double wallpapersLength = 10;
   bool inJoint = false;
 
-
   int stripesFromRoll() => (_height / wallpapersLength).floor();
 
   double wallsLength() => 2 * (_width + _length);
 
   int neededStripes() => (wallsLength() / wallpapersWidth).ceil();
 
-  int neededRolls() =>
-      inJoint
-          ? (neededStripes() / ((stripesFromRoll() - 1) > 0 ? (stripesFromRoll() - 1) : 1)).ceil()
-      : (neededStripes() / (stripesFromRoll() > 0 ? stripesFromRoll() : 1)).ceil();
+  int neededRolls() => inJoint
+      ? (neededStripes() /
+              ((stripesFromRoll() - 1) > 0 ? (stripesFromRoll() - 1) : 1))
+          .ceil()
+      : (neededStripes() / (stripesFromRoll() > 0 ? stripesFromRoll() : 1))
+          .ceil();
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +44,7 @@ class _WallpapersState extends State<Wallpapers> {
                     RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
               ],
               keyboardType: TextInputType.number,
-              onChanged: (s) =>
-              {
+              onChanged: (s) => {
                 setState(() {
                   _length = double.tryParse(s) ?? 0;
                 })
@@ -57,8 +57,7 @@ class _WallpapersState extends State<Wallpapers> {
                     RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
               ],
               keyboardType: TextInputType.number,
-              onChanged: (s) =>
-              {
+              onChanged: (s) => {
                 setState(() {
                   _width = double.tryParse(s) ?? 0;
                 })
@@ -71,8 +70,7 @@ class _WallpapersState extends State<Wallpapers> {
                     RegExp(r"^(\d){0,1}(\.){0,1}(\d){0,2}$"))
               ],
               keyboardType: TextInputType.number,
-              onChanged: (s) =>
-              {
+              onChanged: (s) => {
                 setState(() {
                   _height = double.tryParse(s ?? "0") ?? 0;
                 })
@@ -132,18 +130,21 @@ class _WallpapersState extends State<Wallpapers> {
               title: Text("Склейка в стык?"),
               leading: Checkbox(
                 value: inJoint,
-                onChanged: (
-                        (bool value) {
-                      setState(() {
-                        inJoint = value;
-                      });
-                    }
-                ),
+                onChanged: ((bool value) {
+                  setState(() {
+                    inJoint = value;
+                  });
+                }),
               ),
             ),
-            Text("Площадь стен"),
             Center(
-              child: Text(neededRolls().toString()),
+                child: Text(
+              "Требуется рулонов",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            )),
+            Center(
+              child: Text(neededRolls().toString(),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
             )
           ],
         ),
