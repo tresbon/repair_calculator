@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:repair_calculator/floor_tile.dart';
-import 'wallpapers.dart';
+import 'package:repair_calculator/calculators/floor_tile.dart';
+import '../calculators/wallpapers.dart';
+import 'calculator.dart';
 
 class MainScaffold extends StatelessWidget {
   @override
@@ -18,7 +19,10 @@ class MainScaffold extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Wallpapers()));
+                          builder: (context) => RepairCalculator(
+                                title: 'Рассчитать обои',
+                                child: Wallpapers(),
+                              )));
                 },
                 child: Text("Обои")),
             ElevatedButton(
@@ -26,7 +30,10 @@ class MainScaffold extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => FloorTile()));
+                          builder: (context) => RepairCalculator(
+                                title: 'Рассчитать плитку для пола',
+                                child: FloorTile(),
+                              )));
                 },
                 child: Text("Плитка для пола")),
           ],

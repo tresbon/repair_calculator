@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:repair_calculator/main_scaffold.dart';
-import 'main_scaffold.dart';
+import 'package:repair_calculator/ui/main_scaffold.dart';
+import 'ui/main_scaffold.dart';
 
 void main() {
   runApp(RepairCalculator());
