@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repair_calculator/floor_tile.dart';
 import 'wallpapers.dart';
 
 class MainScaffold extends StatelessWidget {
@@ -19,7 +20,15 @@ class MainScaffold extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => Wallpapers()));
                 },
-                child: Text("Обои"))
+                child: Text("Обои")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FloorTile()));
+                },
+                child: Text("Плитка для пола")),
           ],
         ),
       ),

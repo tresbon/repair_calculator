@@ -14,15 +14,16 @@ class _WallpapersState extends State<Wallpapers> {
   double wallpapersLength = 10;
   bool inJoint = false;
 
-  int stripesFromRoll() => (_height != 0 && _width != 0 && _length != 0) ?
-      (wallpapersLength/_height - (inJoint ? 1:0)).ceil() : 0;
+  int stripesFromRoll() => (_height != 0 && _width != 0 && _length != 0)
+      ? (wallpapersLength / _height - (inJoint ? 1 : 0)).ceil()
+      : 0;
 
   double wallsLength() => 2 * (_width + _length);
 
   int neededStripes() => (wallsLength() / wallpapersWidth).ceil();
 
-  int neededRolls() => stripesFromRoll() != 0 ?
-      (neededStripes()/stripesFromRoll()).ceil() : 0;
+  int neededRolls() =>
+      stripesFromRoll() != 0 ? (neededStripes() / stripesFromRoll()).ceil() : 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _WallpapersState extends State<Wallpapers> {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            Text("Длина"),
+            Text("Длина комнаты"),
             TextField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(
@@ -47,7 +48,7 @@ class _WallpapersState extends State<Wallpapers> {
                 })
               },
             ),
-            Text("Ширина"),
+            Text("Ширина комнаты"),
             TextField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(
@@ -60,7 +61,7 @@ class _WallpapersState extends State<Wallpapers> {
                 })
               },
             ),
-            Text("Высота"),
+            Text("Высота комнаты"),
             TextField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(
