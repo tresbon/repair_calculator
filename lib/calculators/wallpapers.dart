@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../ui/calculator_field.dart';
+import '../ui/calculator_result.dart';
 
 class Wallpapers extends StatefulWidget {
   @override
@@ -33,8 +34,7 @@ class _WallpapersState extends State<Wallpapers> {
         header: "Длина комнаты, см",
         child: TextField(
           inputFormatters: [
-            FilteringTextInputFormatter.allow(
-                RegExp(r"\d")),
+            FilteringTextInputFormatter.allow(RegExp(r"\d")),
             LengthLimitingTextInputFormatter(4)
           ],
           keyboardType: TextInputType.number,
@@ -49,8 +49,7 @@ class _WallpapersState extends State<Wallpapers> {
         header: "Ширина комнаты, см",
         child: TextField(
           inputFormatters: [
-            FilteringTextInputFormatter.allow(
-                RegExp(r"\d")),
+            FilteringTextInputFormatter.allow(RegExp(r"\d")),
             LengthLimitingTextInputFormatter(4)
           ],
           keyboardType: TextInputType.number,
@@ -64,10 +63,7 @@ class _WallpapersState extends State<Wallpapers> {
       CalculatorField(
         header: "Высота комнаты, см",
         child: TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(
-                RegExp(r"\d"))
-          ],
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"\d"))],
           keyboardType: TextInputType.number,
           onChanged: (s) => {
             setState(() {
@@ -149,15 +145,10 @@ class _WallpapersState extends State<Wallpapers> {
           }),
         ),
       ),
-      Center(
-          child: Text(
-        "Требуется рулонов",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      )),
-      Center(
-        child: Text(neededRolls().toString(),
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-      )
+      CalculatorResult(
+        header: "Требуется рулонов",
+        result: neededRolls().toString(),
+      ),
     ]);
   }
 }
