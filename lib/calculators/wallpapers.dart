@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../ui/calculator_field.dart';
-import '../ui/calculator_result.dart';
+import '../ui/calculator_fields.dart';
 
 class Wallpapers extends StatefulWidget {
   @override
@@ -33,6 +32,7 @@ class _WallpapersState extends State<Wallpapers> {
       CalculatorField(
         header: "Длина комнаты, см",
         child: TextField(
+          style: TextStyle(fontSize: 17),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"\d")),
             LengthLimitingTextInputFormatter(4)
@@ -48,6 +48,7 @@ class _WallpapersState extends State<Wallpapers> {
       CalculatorField(
         header: "Ширина комнаты, см",
         child: TextField(
+          style: TextStyle(fontSize: 17),
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"\d")),
             LengthLimitingTextInputFormatter(4)
@@ -63,6 +64,7 @@ class _WallpapersState extends State<Wallpapers> {
       CalculatorField(
         header: "Высота комнаты, см",
         child: TextField(
+          style: TextStyle(fontSize: 17),
           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"\d"))],
           keyboardType: TextInputType.number,
           onChanged: (s) => {
@@ -77,7 +79,10 @@ class _WallpapersState extends State<Wallpapers> {
         child: Column(
           children: [
             ListTile(
-              title: Text("0.53"),
+              title: Text(
+                "0.53",
+                style: TextStyle(fontSize: 17),
+              ),
               leading: Radio(
                 value: 53.0,
                 groupValue: wallpapersWidth,
@@ -89,7 +94,10 @@ class _WallpapersState extends State<Wallpapers> {
               ),
             ),
             ListTile(
-              title: Text("1.06"),
+              title: Text(
+                "1.06",
+                style: TextStyle(fontSize: 17),
+              ),
               leading: Radio(
                 value: 106.0,
                 groupValue: wallpapersWidth,
@@ -108,7 +116,10 @@ class _WallpapersState extends State<Wallpapers> {
         child: Column(
           children: [
             ListTile(
-              title: Text("10"),
+              title: Text(
+                "10",
+                style: TextStyle(fontSize: 17),
+              ),
               leading: Radio(
                 value: 1000.0,
                 groupValue: wallpapersLength,
@@ -120,7 +131,10 @@ class _WallpapersState extends State<Wallpapers> {
               ),
             ),
             ListTile(
-              title: Text("25"),
+              title: Text(
+                "25",
+                style: TextStyle(fontSize: 17),
+              ),
               leading: Radio(
                 value: 2500.0,
                 groupValue: wallpapersLength,
@@ -135,7 +149,10 @@ class _WallpapersState extends State<Wallpapers> {
         ),
       ),
       ListTile(
-        title: Text("С подгоном по рисунку"),
+        title: Text(
+          "С подгоном по рисунку",
+          style: TextStyle(fontSize: 17),
+        ),
         leading: Checkbox(
           value: inJoint,
           onChanged: ((bool value) {
