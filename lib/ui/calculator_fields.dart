@@ -52,9 +52,9 @@ class CalculatorField extends StatelessWidget {
 
 class CalculatorInput extends StatelessWidget {
   final Pattern pattern;
-  final maxLength;
+  final int maxLength;
   final TextInputType keyboardType;
-  final Function(String) onChanged;
+  final ValueChanged<String> onChanged;
 
   CalculatorInput(
       {this.pattern, this.maxLength, this.keyboardType, this.onChanged});
@@ -96,7 +96,7 @@ class CalculatorRadio<T> extends StatelessWidget {
 
 class CalculatorCheckbox extends StatelessWidget {
   final bool value;
-  final void Function(bool) onChanged;
+  final ValueChanged<bool> onChanged;
 
   CalculatorCheckbox({this.value, this.onChanged});
 

@@ -31,136 +31,104 @@ class _WallpapersState extends State<Wallpapers> {
     return ListView(shrinkWrap: true, children: [
       CalculatorField(
         header: "Длина комнаты, см",
-        child: TextField(
-          style: TextStyle(fontSize: 17),
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r"\d")),
-            LengthLimitingTextInputFormatter(4)
-          ],
+        child: CalculatorInput(
+          pattern: RegExp(r"\d"),
+          maxLength: 4,
           keyboardType: TextInputType.number,
           onChanged: (s) => {
             setState(() {
               _length = double.tryParse(s) ?? 0;
-            })
+            } )
           },
-        ),
+        )
       ),
       CalculatorField(
         header: "Ширина комнаты, см",
-        child: TextField(
-          style: TextStyle(fontSize: 17),
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r"\d")),
-            LengthLimitingTextInputFormatter(4)
-          ],
+        child: CalculatorInput(
+          pattern: RegExp(r"\d"),
+          maxLength: 4,
           keyboardType: TextInputType.number,
           onChanged: (s) => {
             setState(() {
               _width = double.tryParse(s) ?? 0;
-            })
+            } )
           },
-        ),
+        )
       ),
       CalculatorField(
         header: "Высота комнаты, см",
-        child: TextField(
-          style: TextStyle(fontSize: 17),
-          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"\d"))],
+        child: CalculatorInput(
+          pattern: RegExp(r"\d"),
+          maxLength: 3,
           keyboardType: TextInputType.number,
           onChanged: (s) => {
             setState(() {
-              _height = double.tryParse(s ?? "0") ?? 0;
-            })
+              _height = double.tryParse(s) ?? 0;
+            } )
           },
-        ),
+        )
       ),
       CalculatorField(
         header: "Ширина рулона, м",
         child: Column(
           children: [
-            ListTile(
-              title: Text(
-                "0.53",
-                style: TextStyle(fontSize: 17),
-              ),
-              leading: Radio(
-                value: 53.0,
-                groupValue: wallpapersWidth,
-                onChanged: (double value) {
-                  setState(() {
-                    wallpapersWidth = value;
-                  });
-                },
-              ),
+            CalculatorRadio(
+              title: "0.53",
+              value: 53.0,
+              groupValue: wallpapersWidth,
+              onChanged: (double value) {
+                setState(() {
+                  wallpapersWidth = value;
+                });
+              },
             ),
-            ListTile(
-              title: Text(
-                "1.06",
-                style: TextStyle(fontSize: 17),
-              ),
-              leading: Radio(
-                value: 106.0,
-                groupValue: wallpapersWidth,
-                onChanged: (double value) {
-                  setState(() {
-                    wallpapersWidth = value;
-                  });
-                },
-              ),
+            CalculatorRadio(
+              title: "1.06",
+              value: 106.0,
+              groupValue: wallpapersWidth,
+              onChanged: (double value) {
+                setState(() {
+                  wallpapersWidth = value;
+                });
+              },
             ),
           ],
         ),
       ),
       CalculatorField(
-        header: "Ширина рулона, м",
+        header: "Длина рулона, м",
         child: Column(
           children: [
-            ListTile(
-              title: Text(
-                "10",
-                style: TextStyle(fontSize: 17),
-              ),
-              leading: Radio(
-                value: 1000.0,
-                groupValue: wallpapersLength,
-                onChanged: (double value) {
-                  setState(() {
-                    wallpapersLength = value;
-                  });
-                },
-              ),
+            CalculatorRadio(
+              title: "10",
+              value: 1000.0,
+              groupValue: wallpapersLength,
+              onChanged: (double value) {
+                setState(() {
+                  wallpapersLength = value;
+                });
+              },
             ),
-            ListTile(
-              title: Text(
-                "25",
-                style: TextStyle(fontSize: 17),
-              ),
-              leading: Radio(
-                value: 2500.0,
-                groupValue: wallpapersLength,
-                onChanged: (double value) {
-                  setState(() {
-                    wallpapersLength = value;
-                  });
-                },
-              ),
+            CalculatorRadio(
+              title: "25",
+              value: 2500.0,
+              groupValue: wallpapersLength,
+              onChanged: (double value) {
+                setState(() {
+                  wallpapersLength = value;
+                });
+              },
             ),
           ],
         ),
       ),
-      ListTile(
-        title: Text(
-          "С подгоном по рисунку",
-          style: TextStyle(fontSize: 17),
-        ),
-        leading: Checkbox(
-          value: inJoint,
-          onChanged: ((bool value) {
-            setState(() {
-              inJoint = value;
-            });
-          }),
-        ),
+      CalculatorCheckbox(
+        value: inJoint,
+        onChanged: (bool value) {
+          setState(() {
+            inJoint = value;
+          });
+        },
       ),
       CalculatorResult(
         header: "Требуется рулонов",
