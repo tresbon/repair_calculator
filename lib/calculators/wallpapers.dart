@@ -144,6 +144,10 @@ class _WallpapersState extends State<Wallpapers> {
         
         Окна и двери не учитываются
         """,
+      ),
+      AddToPurchasesButton(
+        type: "Обои",
+        quantity: neededRolls(),
       )
     ]);
   }

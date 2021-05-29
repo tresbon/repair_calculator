@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../utils/db_models.dart';
+import '../utils/db_helper.dart';
 
 class CalculatorResult extends StatelessWidget {
   final String header;
@@ -162,6 +164,62 @@ class HowCounted extends StatelessWidget {
     );
   }
 }
+
+class AddToPurchasesButton extends StatelessWidget {
+  final int quantity;
+  final String type;
+  AddToPurchasesButton({this.quantity, this.type});
+  @override
+  Widget build(BuildContext context) {
+    DB db = DB();
+    TextEditingController _purchaseController = TextEditingController();
+    Future<void> addPurchaseDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Добавить в покупки'),
+            content: SingleChildScrollView(
+              child: TextField(
+                controller: _purchaseController,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Закрыть'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Сохранить'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  db.openDb();
+                  db.updatePurchase(Purchase(
+                      id: 0,
+                      type: type,
+                      quantity: quantity,
+                      comment: _purchaseController.text
+                  ));
+                  _purchaseController.clear();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    return Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: ElevatedButton(onPressed: () {
+        addPurchaseDialog();
+      }, child: Text("Сохранить в покупки")),
+    );
+  }
+}
+
 
 
 
