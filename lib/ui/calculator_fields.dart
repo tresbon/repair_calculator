@@ -100,6 +100,7 @@ class CalculatorCheckbox extends StatelessWidget {
 
   CalculatorCheckbox({this.value, this.onChanged});
 
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -114,3 +115,53 @@ class CalculatorCheckbox extends StatelessWidget {
     );
   }
 }
+
+class HowCounted extends StatelessWidget {
+  final String countExplanation;
+  HowCounted({this.countExplanation});
+  @override
+  Widget build(BuildContext context) {
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Алгоритм расчёта'),
+            content: SingleChildScrollView(
+              child: Text(countExplanation,
+                softWrap: true,
+                maxLines: 100,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Закрыть'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    return InkWell(
+      child: Center(
+        child: Text(
+          "алгоритм расчёта",
+          style: (
+          TextStyle(
+            fontSize: 15,
+            decoration: TextDecoration.underline
+          )
+          ),
+        ),
+      ),
+      onTap: () {_showMyDialog();},
+    );
+  }
+}
+
+
+
