@@ -33,6 +33,7 @@ class DB {
           purchase.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace,
         );
+    print(purchase);
     return id;
   }
 

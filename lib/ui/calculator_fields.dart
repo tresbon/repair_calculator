@@ -172,6 +172,11 @@ class AddToPurchasesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DB db = DB();
+    Future savePurchase(Purchase purchase) async {
+      await db.openDb();
+      await db.updatePurchase(purchase);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Покупка сохранена")));
+    }
     TextEditingController _purchaseController = TextEditingController();
     Future<void> addPurchaseDialog() async {
       return showDialog<void>(
@@ -197,7 +202,7 @@ class AddToPurchasesButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                   db.openDb();
-                  db.updatePurchase(Purchase(
+                  savePurchase(Purchase(
                       id: 0,
                       type: type,
                       quantity: quantity,

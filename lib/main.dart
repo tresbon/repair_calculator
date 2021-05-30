@@ -13,7 +13,7 @@ class RepairCalculator extends StatelessWidget {
     return MaterialApp(
       title: 'Калькулятор ремонта',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lime,
       ),
       home: MainScaffold()
     );

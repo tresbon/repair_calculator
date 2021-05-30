@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:repair_calculator/calculators/floor_tile.dart';
 import '../calculators/wallpapers.dart';
 import 'calculator.dart';
+import '../ui/purchases_list.dart';
 
 class MainScaffold extends StatelessWidget {
   @override
@@ -36,6 +37,12 @@ class MainScaffold extends StatelessWidget {
                               )));
                 },
                 child: Text("Плитка для пола")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PurchasesList()));
+                },
+                child: Text("Список покупок")),
           ],
         ),
       ),
