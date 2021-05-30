@@ -22,7 +22,7 @@ class _PurchasesListState extends State<PurchasesList> {
       body: Padding(
         padding: EdgeInsets.all(20),
         child: (ListView.builder(
-            itemCount: purchasesList.length,
+            itemCount: purchasesList.length == null ? 0: purchasesList.length,
             itemBuilder: (BuildContext context, int index) {
               return Dismissible(
                 key: Key("${purchasesList[index].id}${purchasesList[index].type}"),

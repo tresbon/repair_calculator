@@ -146,7 +146,7 @@ class _WallpapersState extends State<Wallpapers> {
         """,
       ),
       AddToPurchasesButton(
-        type: "Обои",
+        type: "${conjugateNumber(neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев",
         quantity: neededRolls(),
       )
     ]);

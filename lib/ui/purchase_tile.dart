@@ -8,9 +8,22 @@ class PurchaseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: Text(purchase.quantity.toString()),
-        title: Text(purchase.type),
-        subtitle: Text(purchase.comment),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(purchase.quantity.toString(),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold
+          ),),
+        ),
+        title: Text(purchase.type,
+        style: TextStyle(
+          fontSize: 17
+        ),),
+        subtitle: Text(purchase.comment,
+        style: TextStyle(
+          fontSize: 17
+        ),),
       ),
     );
   }

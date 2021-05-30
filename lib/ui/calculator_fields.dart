@@ -165,6 +165,16 @@ class HowCounted extends StatelessWidget {
   }
 }
 
+conjugateNumber(int number, String one, String twoFive, String sixNine) {
+  if (number % 10 == 1) {
+    return one;
+  } else if ([2,3,4,5].contains(number % 10)) {
+    return twoFive;
+  } else {
+    return sixNine;
+  }
+}
+
 class AddToPurchasesButton extends StatelessWidget {
   final int quantity;
   final String type;
