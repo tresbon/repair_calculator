@@ -49,9 +49,9 @@ class DB {
     });
   }
 
-  Future<int> deleteList(Purchase purchase) async {
+  Future<int> deletePurchase(Purchase purchase) async {
     int result =
-        await db.delete("items", where: "idList = ?", whereArgs: [purchase.id]);
+        await db.delete("purchases", where: "id = ?", whereArgs: [purchase.id]);
     return result;
   }
 }

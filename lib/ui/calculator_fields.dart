@@ -220,7 +220,10 @@ class AddToPurchasesButton extends StatelessWidget {
       padding: const EdgeInsets.all(40.0),
       child: ElevatedButton(onPressed: () {
         addPurchaseDialog();
-      }, child: Text("Сохранить в покупки")),
+      }, child: Text("Сохранить в покупки",
+      style: TextStyle(
+        fontSize: 17
+      ),)),
     );
   }
 }

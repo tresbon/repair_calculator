@@ -11,6 +11,7 @@ class PurchasesList extends StatefulWidget {
 class _PurchasesListState extends State<PurchasesList> {
   DB db = DB();
   List<Purchase> purchasesList;
+
   @override
   Widget build(BuildContext context) {
     loadPurchases();
@@ -20,15 +21,25 @@ class _PurchasesListState extends State<PurchasesList> {
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
-        child: (
-        ListView.builder(
-          itemCount: purchasesList == null ? 0 : purchasesList.length,
+        child: (ListView.builder(
+            itemCount: purchasesList.length,
             itemBuilder: (BuildContext context, int index) {
-            return PurchaseTile(
-              purchase: purchasesList[index],
-            );
-            })
-        ),
+              return Dismissible(
+                key: Key("${purchasesList[index].id}${purchasesList[index].type}"),
+                onDismissed: (direction) {
+                  db.deletePurchase(purchasesList[index]);
+                  setState(() {
+                    purchasesList.removeAt(index);
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Покупка удалена из списка"),
+                  ));
+                },
+                child: PurchaseTile(
+                  purchase: purchasesList[index],
+                ),
+              );
+            })),
       ),
     );
   }
