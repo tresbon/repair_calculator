@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../ui/calculator_fields.dart';
 
 class FloorTile extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _FloorTileState extends State<FloorTile> {
   int _floorWidth = 0;
   int _tileLength = 0;
   int _tileWidth = 0;
-  int _reserve = 5;
+  int _reserve = 0;
 
   int _floorSquare() => _floorLength * _floorWidth;
 
@@ -25,74 +26,86 @@ class _FloorTileState extends State<FloorTile> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Text("Длина пола, см"),
-        TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'\d')),
-            LengthLimitingTextInputFormatter(4)
-          ],
-          keyboardType: TextInputType.number,
-          onChanged: (value) {
-            setState(() {
-              _floorLength = int.parse(value);
-            });
-          },
+        CalculatorField(
+            header: "Длина пола, см",
+            child: CalculatorInput(
+                pattern: RegExp(r"\d"),
+                maxLength: 4,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(
+                    () {
+                      _floorLength = int.parse(value);
+                    },
+                  );
+                })),
+        CalculatorField(
+            header: "Ширина пола, см",
+            child: CalculatorInput(
+                pattern: RegExp(r"\d"),
+                maxLength: 4,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(
+                    () {
+                      _floorWidth = int.parse(value);
+                    },
+                  );
+                })),
+        CalculatorField(
+            header: "Длина плитки, см",
+            child: CalculatorInput(
+                pattern: RegExp(r"\d"),
+                maxLength: 3,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(
+                    () {
+                      _tileLength = int.parse(value);
+                    },
+                  );
+                })),
+        CalculatorField(
+            header: "Ширина плитки, см",
+            child: CalculatorInput(
+                pattern: RegExp(r"\d"),
+                maxLength: 3,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(
+                        () {
+                          _tileWidth = int.parse(value);
+                    },
+                  );
+                })),
+        CalculatorField(
+            header: "Запас, %",
+            child: CalculatorInput(
+                pattern: RegExp(r"\d"),
+                maxLength: 2,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(
+                        () {
+                          _reserve = int.parse(value);
+                    },
+                  );
+                })),
+        CalculatorResult(
+          header: "Плиток нужно",
+          result: _neededTiles().ceil().toString(),
         ),
-        Text("Ширина пола, см"),
-        TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'\d')),
-            LengthLimitingTextInputFormatter(4)
-          ],
-          keyboardType: TextInputType.number,
-          onChanged: (value) {
-            setState(() {
-              _floorWidth = int.parse(value);
-            });
-          },
+        HowCounted(
+          countExplanation: """
+          Площадь пола делится на площадь одной плитки
+          Результат умножается на запас
+          Запас по умолчанию равен нулю
+          """,
         ),
-        Text("Длина плитки, см"),
-        TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'\d')),
-            LengthLimitingTextInputFormatter(3)
-          ],
-          keyboardType: TextInputType.number,
-          onChanged: (value) {
-            setState(() {
-              _tileLength = int.parse(value);
-            });
-          },
+        AddToPurchasesButton(
+          type: "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола",
+          quantity: _neededTiles().ceil(),
         ),
-        Text("Ширина плитки, см"),
-        TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'\d')),
-            LengthLimitingTextInputFormatter(3)
-          ],
-          keyboardType: TextInputType.number,
-          onChanged: (value) {
-            setState(() {
-              _tileWidth = int.parse(value);
-            });
-          },
-        ),
-        Text("Запас, %"),
-        TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'\d')),
-            LengthLimitingTextInputFormatter(2)
-          ],
-          keyboardType: TextInputType.number,
-          controller: TextEditingController(text: _reserve.toString()),
-          onChanged: (value) {
-            setState(() {
-              _reserve = int.parse(value);
-            });
-          },
-        ),
-        Text("Плиток нужно"),
-        Text(_neededTiles().ceil().toString())
       ],
     );
   }

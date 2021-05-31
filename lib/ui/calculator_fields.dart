@@ -229,7 +229,11 @@ class AddToPurchasesButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(40.0),
       child: ElevatedButton(onPressed: () {
-        addPurchaseDialog();
+        if (quantity > 0) {
+          addPurchaseDialog();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Можно сохранить количество больше 0")));
+        }
       }, child: Text("Сохранить в покупки",
       style: TextStyle(
         fontSize: 17
