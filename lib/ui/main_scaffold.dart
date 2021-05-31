@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:repair_calculator/calculators/floor_tile.dart';
 import '../calculators/wallpapers.dart';
+import '../calculators/walls_tile.dart';
 import 'calculator.dart';
 import '../ui/purchases_list.dart';
 
@@ -37,6 +38,17 @@ class MainScaffold extends StatelessWidget {
                               )));
                 },
                 child: Text("Плитка для пола")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RepairCalculator(
+                            title: 'Рассчитать плитку для стен',
+                            child: WallsTile(),
+                          )));
+                },
+                child: Text("Плитка для стен")),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,

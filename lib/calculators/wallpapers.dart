@@ -146,7 +146,7 @@ class _WallpapersState extends State<Wallpapers> {
         """,
       ),
       AddToPurchasesButton(
-        type: "${conjugateNumber(neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев",
+        type: "${conjugateNumber(neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев ${(wallsLength() / 100 * _height / 100).ceil()} м^2",
         quantity: neededRolls(),
       )
     ]);

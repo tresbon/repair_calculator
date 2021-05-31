@@ -73,8 +73,8 @@ class _FloorTileState extends State<FloorTile> {
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   setState(
-                        () {
-                          _tileWidth = int.parse(value);
+                    () {
+                      _tileWidth = int.parse(value);
                     },
                   );
                 })),
@@ -86,8 +86,8 @@ class _FloorTileState extends State<FloorTile> {
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   setState(
-                        () {
-                          _reserve = int.parse(value);
+                    () {
+                      _reserve = int.parse(value);
                     },
                   );
                 })),
@@ -103,7 +103,8 @@ class _FloorTileState extends State<FloorTile> {
           """,
         ),
         AddToPurchasesButton(
-          type: "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола",
+          type:
+              "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола ${(_floorSquare()/100).ceil()} м^2",
           quantity: _neededTiles().ceil(),
         ),
       ],
