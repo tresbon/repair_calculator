@@ -13,7 +13,7 @@ class _WallsTilesState extends State<WallsTile> {
   int _height = 0;
   int _tileWidth = 0;
   int _tileLength = 0;
-  int _reserve = 0;
+  int _reserve = 5;
 
   int _wallsLength() => 2 * (_width + _length);
 
@@ -114,7 +114,6 @@ class _WallsTilesState extends State<WallsTile> {
         countExplanation: """
         Периметр умножается на высоту стен
         Площадь стен делится на площадь одной плитки
-        По умолчанию запас равен нулю
         """,
       ),
       AddToPurchasesButton(

@@ -168,6 +168,9 @@ class HowCounted extends StatelessWidget {
 }
 
 conjugateNumber(int number, String one, String twoFive, String sixNine) {
+  if ([for(var i=11; i<20; i+=1) i].contains(number)) {
+    return sixNine;
+  }
   if (number % 10 == 1) {
     return one;
   } else if ([2,3,4,5].contains(number % 10)) {

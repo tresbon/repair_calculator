@@ -4,6 +4,7 @@ import '../calculators/wallpapers.dart';
 import '../calculators/walls_tile.dart';
 import 'calculator.dart';
 import '../ui/purchases_list.dart';
+import '../calculators/laminate.dart';
 
 class MainScaffold extends StatelessWidget {
   @override
@@ -49,6 +50,17 @@ class MainScaffold extends StatelessWidget {
                           )));
                 },
                 child: Text("Плитка для стен")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RepairCalculator(
+                            title: 'Рассчитать ламинат',
+                            child: Laminate(),
+                          )));
+                },
+                child: Text("Ламинат")),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,

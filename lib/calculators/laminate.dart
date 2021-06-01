@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../ui/calculator_fields.dart';
 
-class FloorTile extends StatefulWidget {
+class Laminate extends StatefulWidget {
   @override
-  _FloorTileState createState() => _FloorTileState();
+  _LaminateState createState() => _LaminateState();
 }
 
-class _FloorTileState extends State<FloorTile> {
+class _LaminateState extends State<Laminate> {
   int _floorLength = 0;
   int _floorWidth = 0;
-  int _tileLength = 0;
-  int _tileWidth = 0;
+  int _tileLength = 120;
+  int _tileWidth = 30;
   int _reserve = 5;
 
   int _floorSquare() => _floorLength * _floorWidth;
@@ -35,7 +35,7 @@ class _FloorTileState extends State<FloorTile> {
                 controllerText: _floorLength.toString(),
                 onChanged: (value) {
                   setState(
-                    () {
+                        () {
                       _floorLength = int.parse(value);
                     },
                   );
@@ -49,13 +49,13 @@ class _FloorTileState extends State<FloorTile> {
                 controllerText: _floorWidth.toString(),
                 onChanged: (value) {
                   setState(
-                    () {
+                        () {
                       _floorWidth = int.parse(value);
                     },
                   );
                 })),
         CalculatorField(
-            header: "Длина плитки, см",
+            header: "Длина панели, см",
             child: CalculatorInput(
                 pattern: RegExp(r"\d"),
                 maxLength: 3,
@@ -63,13 +63,13 @@ class _FloorTileState extends State<FloorTile> {
                 controllerText: _tileLength.toString(),
                 onChanged: (value) {
                   setState(
-                    () {
+                        () {
                       _tileLength = int.parse(value);
                     },
                   );
                 })),
         CalculatorField(
-            header: "Ширина плитки, см",
+            header: "Ширина панели, см",
             child: CalculatorInput(
                 pattern: RegExp(r"\d"),
                 maxLength: 3,
@@ -77,7 +77,7 @@ class _FloorTileState extends State<FloorTile> {
                 controllerText: _tileWidth.toString(),
                 onChanged: (value) {
                   setState(
-                    () {
+                        () {
                       _tileWidth = int.parse(value);
                     },
                   );
@@ -91,24 +91,25 @@ class _FloorTileState extends State<FloorTile> {
                 controllerText: _reserve.toString(),
                 onChanged: (value) {
                   setState(
-                    () {
+                        () {
                       _reserve = int.parse(value);
                     },
                   );
                 })),
         CalculatorResult(
-          header: "Плиток нужно",
+          header: "Панелей нужно",
           result: _neededTiles().ceil().toString(),
         ),
         HowCounted(
           countExplanation: """
-          Площадь пола делится на площадь одной плитки
+          Площадь пола делится на площадь одной панели
           Результат умножается на запас
+          Отступы не учитываются
           """,
         ),
         AddToPurchasesButton(
           type:
-              "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола ${(_floorSquare()/100).ceil()}м^2",
+          "${conjugateNumber(_neededTiles().ceil(), "Панель", "Панели", "Панелей")} ламината ${(_floorSquare()/100).ceil()}м^2",
           quantity: _neededTiles().ceil(),
         ),
       ],
