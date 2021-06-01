@@ -11,20 +11,20 @@ class _WallpapersState extends State<Wallpapers> {
   double _width = 0;
   double _length = 0;
   double _height = 0;
-  double wallpapersWidth = 53;
-  double wallpapersLength = 1000;
-  bool inJoint = false;
+  double _wallpapersWidth = 53;
+  double _wallpapersLength = 1000;
+  bool _inJoint = false;
 
-  int stripesFromRoll() => (_height != 0 && _width != 0 && _length != 0)
-      ? (wallpapersLength / _height - (inJoint ? 1 : 0)).ceil()
+  int _stripesFromRoll() => (_height != 0 && _width != 0 && _length != 0)
+      ? (_wallpapersLength / _height - (_inJoint ? 1 : 0)).ceil()
       : 0;
 
-  double wallsLength() => 2 * (_width + _length);
+  double _wallsLength() => 2 * (_width + _length);
 
-  int neededStripes() => (wallsLength() / wallpapersWidth).ceil();
+  int _neededStripes() => (_wallsLength() / _wallpapersWidth).ceil();
 
-  int neededRolls() =>
-      stripesFromRoll() != 0 ? (neededStripes() / stripesFromRoll()).ceil() : 0;
+  int _neededRolls() =>
+      _stripesFromRoll() != 0 ? (_neededStripes() / _stripesFromRoll()).ceil() : 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class _WallpapersState extends State<Wallpapers> {
           pattern: RegExp(r"\d"),
           maxLength: 4,
           keyboardType: TextInputType.number,
+          controllerText: _length.toString(),
           onChanged: (s) => {
             setState(() {
               _length = double.tryParse(s) ?? 0;
@@ -48,6 +49,7 @@ class _WallpapersState extends State<Wallpapers> {
           pattern: RegExp(r"\d"),
           maxLength: 4,
           keyboardType: TextInputType.number,
+          controllerText: _width.toString(),
           onChanged: (s) => {
             setState(() {
               _width = double.tryParse(s) ?? 0;
@@ -61,6 +63,7 @@ class _WallpapersState extends State<Wallpapers> {
           pattern: RegExp(r"\d"),
           maxLength: 3,
           keyboardType: TextInputType.number,
+          controllerText: _height.toString(),
           onChanged: (s) => {
             setState(() {
               _height = double.tryParse(s) ?? 0;
@@ -75,20 +78,20 @@ class _WallpapersState extends State<Wallpapers> {
             CalculatorRadio(
               title: "0.53",
               value: 53.0,
-              groupValue: wallpapersWidth,
+              groupValue: _wallpapersWidth,
               onChanged: (double value) {
                 setState(() {
-                  wallpapersWidth = value;
+                  _wallpapersWidth = value;
                 });
               },
             ),
             CalculatorRadio(
               title: "1.06",
               value: 106.0,
-              groupValue: wallpapersWidth,
+              groupValue: _wallpapersWidth,
               onChanged: (double value) {
                 setState(() {
-                  wallpapersWidth = value;
+                  _wallpapersWidth = value;
                 });
               },
             ),
@@ -102,20 +105,20 @@ class _WallpapersState extends State<Wallpapers> {
             CalculatorRadio(
               title: "10",
               value: 1000.0,
-              groupValue: wallpapersLength,
+              groupValue: _wallpapersLength,
               onChanged: (double value) {
                 setState(() {
-                  wallpapersLength = value;
+                  _wallpapersLength = value;
                 });
               },
             ),
             CalculatorRadio(
               title: "25",
               value: 2500.0,
-              groupValue: wallpapersLength,
+              groupValue: _wallpapersLength,
               onChanged: (double value) {
                 setState(() {
-                  wallpapersLength = value;
+                  _wallpapersLength = value;
                 });
               },
             ),
@@ -123,16 +126,16 @@ class _WallpapersState extends State<Wallpapers> {
         ),
       ),
       CalculatorCheckbox(
-        value: inJoint,
+        value: _inJoint,
         onChanged: (bool value) {
           setState(() {
-            inJoint = value;
+            _inJoint = value;
           });
         },
       ),
       CalculatorResult(
         header: "Требуется рулонов",
-        result: neededRolls().toString(),
+        result: _neededRolls().toString(),
       ),
       HowCounted(
         countExplanation: """
@@ -146,8 +149,8 @@ class _WallpapersState extends State<Wallpapers> {
         """,
       ),
       AddToPurchasesButton(
-        type: "${conjugateNumber(neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев ${(wallsLength() / 100 * _height / 100).ceil()}м^2",
-        quantity: neededRolls(),
+        type: "${conjugateNumber(_neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев ${(_wallsLength() / 100 * _height / 100).ceil()}м^2",
+        quantity: _neededRolls(),
       )
     ]);
   }

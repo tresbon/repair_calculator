@@ -32,6 +32,7 @@ class _FloorTileState extends State<FloorTile> {
                 pattern: RegExp(r"\d"),
                 maxLength: 4,
                 keyboardType: TextInputType.number,
+                controllerText: _floorLength.toString(),
                 onChanged: (value) {
                   setState(
                     () {
@@ -45,6 +46,7 @@ class _FloorTileState extends State<FloorTile> {
                 pattern: RegExp(r"\d"),
                 maxLength: 4,
                 keyboardType: TextInputType.number,
+                controllerText: _floorWidth.toString(),
                 onChanged: (value) {
                   setState(
                     () {
@@ -58,6 +60,7 @@ class _FloorTileState extends State<FloorTile> {
                 pattern: RegExp(r"\d"),
                 maxLength: 3,
                 keyboardType: TextInputType.number,
+                controllerText: _tileLength.toString(),
                 onChanged: (value) {
                   setState(
                     () {
@@ -71,6 +74,7 @@ class _FloorTileState extends State<FloorTile> {
                 pattern: RegExp(r"\d"),
                 maxLength: 3,
                 keyboardType: TextInputType.number,
+                controllerText: _tileWidth.toString(),
                 onChanged: (value) {
                   setState(
                     () {
@@ -84,6 +88,7 @@ class _FloorTileState extends State<FloorTile> {
                 pattern: RegExp(r"\d"),
                 maxLength: 2,
                 keyboardType: TextInputType.number,
+                controllerText: _reserve.toString(),
                 onChanged: (value) {
                   setState(
                     () {

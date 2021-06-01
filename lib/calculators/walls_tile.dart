@@ -15,12 +15,12 @@ class _WallsTilesState extends State<WallsTile> {
   int _tileLength = 0;
   int _reserve = 0;
 
-  int wallsLength() => 2 * (_width + _length);
+  int _wallsLength() => 2 * (_width + _length);
 
-  int ceilSquare() => _tileLength * _tileWidth;
+  int _ceilSquare() => _tileLength * _tileWidth;
 
-  int neededTiles() => ceilSquare() > 0
-      ? (((100 + _reserve)/100) * wallsLength() * _height / ceilSquare()).ceil()
+  int _neededTiles() => _ceilSquare() > 0
+      ? (((100 + _reserve)/100) * _wallsLength() * _height / _ceilSquare()).ceil()
       : 0;
 
   @override
@@ -32,6 +32,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 4,
             keyboardType: TextInputType.number,
+            controllerText: _length.toString(),
             onChanged: (s)  {
               setState(() {
                 _length = int.tryParse(s) ?? 0;
@@ -46,6 +47,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 4,
             keyboardType: TextInputType.number,
+            controllerText: _width.toString(),
             onChanged: (s) => {
               setState(() {
                 _width = int.tryParse(s) ?? 0;
@@ -58,6 +60,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 3,
             keyboardType: TextInputType.number,
+            controllerText: _height.toString(),
             onChanged: (s) => {
               setState(() {
                 _height = int.tryParse(s) ?? 0;
@@ -70,6 +73,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 3,
             keyboardType: TextInputType.number,
+            controllerText: _tileLength.toString(),
             onChanged: (s) => {
               setState(() {
                 _tileLength = int.tryParse(s) ?? 0;
@@ -82,6 +86,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 3,
             keyboardType: TextInputType.number,
+            controllerText: _tileWidth.toString(),
             onChanged: (s) => {
               setState(() {
                 _tileWidth = int.tryParse(s) ?? 0;
@@ -94,6 +99,7 @@ class _WallsTilesState extends State<WallsTile> {
             pattern: RegExp(r"\d"),
             maxLength: 2,
             keyboardType: TextInputType.number,
+            controllerText: _reserve.toString(),
             onChanged: (s) => {
               setState(() {
                 _reserve = int.tryParse(s) ?? 0;
@@ -102,7 +108,7 @@ class _WallsTilesState extends State<WallsTile> {
           )),
       CalculatorResult(
         header: "Требуется плиток",
-        result: neededTiles().toString(),
+        result: _neededTiles().toString(),
       ),
       HowCounted(
         countExplanation: """
@@ -113,8 +119,8 @@ class _WallsTilesState extends State<WallsTile> {
       ),
       AddToPurchasesButton(
         type:
-            "${conjugateNumber(neededTiles(), "Плитка", "Плитки", "Плиток")} для стен ${(wallsLength() / 100 * _height / 100).ceil()}м^2",
-        quantity: neededTiles(),
+            "${conjugateNumber(_neededTiles(), "Плитка", "Плитки", "Плиток")} для стен ${(_wallsLength() / 100 * _height / 100).ceil()}м^2",
+        quantity: _neededTiles(),
       )
     ]);
   }

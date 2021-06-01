@@ -57,9 +57,10 @@ class CalculatorInput extends StatelessWidget {
   final int maxLength;
   final TextInputType keyboardType;
   final ValueChanged<String> onChanged;
+  final String controllerText;
 
   CalculatorInput(
-      {this.pattern, this.maxLength, this.keyboardType, this.onChanged});
+      {this.pattern, this.maxLength, this.keyboardType, this.onChanged, this.controllerText});
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +72,7 @@ class CalculatorInput extends StatelessWidget {
       ],
       keyboardType: keyboardType,
       onChanged: onChanged,
+      controller: TextEditingController(text: controllerText),
     );
   }
 }
