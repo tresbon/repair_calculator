@@ -104,7 +104,7 @@ class _FloorTileState extends State<FloorTile> {
         ),
         AddToPurchasesButton(
           type:
-              "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола ${(_floorSquare()/100).ceil()} м^2",
+              "${conjugateNumber(_neededTiles().ceil(), "Плитка", "Плитки", "Плиток")} для пола ${(_floorSquare()/100).ceil()}м^2",
           quantity: _neededTiles().ceil(),
         ),
       ],

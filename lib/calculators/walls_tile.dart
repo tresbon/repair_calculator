@@ -113,7 +113,7 @@ class _WallsTilesState extends State<WallsTile> {
       ),
       AddToPurchasesButton(
         type:
-            "${conjugateNumber(neededTiles(), "Плитка", "Плитки", "Плиток")} ${(wallsLength() / 100 * _height / 100).ceil()} м^2",
+            "${conjugateNumber(neededTiles(), "Плитка", "Плитки", "Плиток")} для стен ${(wallsLength() / 100 * _height / 100).ceil()}м^2",
         quantity: neededTiles(),
       )
     ]);
