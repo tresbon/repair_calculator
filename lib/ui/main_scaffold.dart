@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:repair_calculator/calculators/floor_tile.dart';
-import '../calculators/wallpapers.dart';
-import '../calculators/walls_tile.dart';
-import 'calculator.dart';
 import '../ui/purchases_list.dart';
-import '../calculators/laminate.dart';
+import 'construction_material_button.dart';
+import 'constructin_materials_list.dart';
 
-class MainScaffold extends StatelessWidget {
+class MainScaffold extends StatefulWidget {
+  @override
+  _MainScaffoldState createState() => _MainScaffoldState();
+}
+
+class _MainScaffoldState extends State<MainScaffold> {
+  final List<ConcreteMaterial> _materials = ConstructionMaterials().calculators;
+
+  List<ConcreteMaterial> _searchResults = [];
+
+  List<ConcreteMaterial> _filteredMaterials = [];
+  void initState() {
+    _filteredMaterials = _materials;
+  }
+
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,50 +30,37 @@ class MainScaffold extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         child: ListView(
           children: [
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RepairCalculator(
-                                title: 'Рассчитать обои',
-                                child: Wallpapers(),
-                              )));
-                },
-                child: Text("Обои")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RepairCalculator(
-                                title: 'Рассчитать плитку для пола',
-                                child: FloorTile(),
-                              )));
-                },
-                child: Text("Плитка для пола")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RepairCalculator(
-                            title: 'Рассчитать плитку для стен',
-                            child: WallsTile(),
-                          )));
-                },
-                child: Text("Плитка для стен")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RepairCalculator(
-                            title: 'Рассчитать ламинат',
-                            child: Laminate(),
-                          )));
-                },
-                child: Text("Ламинат")),
+            TextField(
+              controller: _controller,
+              onChanged: (s) {
+                _searchResults.clear();
+
+                if (s.isEmpty) {
+                  setState(() {
+                    _filteredMaterials = _materials;
+                  });
+                }
+
+                _materials.forEach((element) {
+                  if (element.title.toLowerCase().contains(s)) {
+                    _searchResults.add(element);
+                  }
+                });
+
+                setState(() {
+                  _filteredMaterials = _searchResults;
+                });
+              },
+            ),
+            ListView.builder(itemCount: _filteredMaterials.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+              return ConstructionMaterialButton(
+                title: _filteredMaterials[index].title,
+                calculatorTitle: _filteredMaterials[index].calculatorTitle,
+                calculatorPage: _filteredMaterials[index].calculatorPage,
+              );
+                }),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,

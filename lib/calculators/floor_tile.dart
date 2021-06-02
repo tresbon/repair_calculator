@@ -10,8 +10,8 @@ class FloorTile extends StatefulWidget {
 class _FloorTileState extends State<FloorTile> {
   int _floorLength = 0;
   int _floorWidth = 0;
-  int _tileLength = 0;
-  int _tileWidth = 0;
+  int _tileLength = 45;
+  int _tileWidth = 45;
   int _reserve = 5;
 
   int _floorSquare() => _floorLength * _floorWidth;
