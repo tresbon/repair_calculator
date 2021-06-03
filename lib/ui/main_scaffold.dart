@@ -14,6 +14,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   List<ConcreteMaterial> _searchResults = [];
 
   List<ConcreteMaterial> _filteredMaterials = [];
+
   void initState() {
     _filteredMaterials = _materials;
   }
@@ -23,6 +24,27 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text(
+              "Меню",
+              style: TextStyle(
+                fontSize: 17
+              ),
+            )),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PurchasesList()));
+                },
+                child: Text("Список покупок",
+                style: TextStyle(
+                  fontSize: 17
+                ),))
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text("Выберите материал"),
       ),
@@ -52,21 +74,25 @@ class _MainScaffoldState extends State<MainScaffold> {
                 });
               },
             ),
-            ListView.builder(itemCount: _filteredMaterials.length,
+            ListView.builder(
+                itemCount: _filteredMaterials.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-              return ConstructionMaterialButton(
-                title: _filteredMaterials[index].title,
-                calculatorTitle: _filteredMaterials[index].calculatorTitle,
-                calculatorPage: _filteredMaterials[index].calculatorPage,
-              );
+                  return ConstructionMaterialButton(
+                    title: _filteredMaterials[index].title,
+                    calculatorTitle: _filteredMaterials[index].calculatorTitle,
+                    calculatorPage: _filteredMaterials[index].calculatorPage,
+                  );
                 }),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PurchasesList()));
                 },
-                child: Text("Список покупок")),
+                child: Text(
+                  "Список покупок",
+                  style: TextStyle(fontSize: 17),
+                )),
           ],
         ),
       ),
