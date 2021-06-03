@@ -54,6 +54,20 @@ class _MainScaffoldState extends State<MainScaffold> {
           children: [
             TextField(
               controller: _controller,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    _controller.clear();
+                    _searchResults.clear();
+                    _filteredMaterials = _materials;
+                    setState(() {
+
+                    });
+                  },
+                )
+              ),
               onChanged: (s) {
                 _searchResults.clear();
 
