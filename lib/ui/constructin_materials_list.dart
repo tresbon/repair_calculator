@@ -4,6 +4,7 @@ import '../calculators/laminate.dart';
 import '../calculators/floor_tile.dart';
 import '../calculators/wallpapers.dart';
 import '../calculators/walls_tile.dart';
+import '../calculators/levering_floor.dart';
 
 class ConstructionMaterials {
   List<ConcreteMaterial> calculators = [
@@ -26,6 +27,11 @@ class ConstructionMaterials {
         title: "Ламинат",
         calculatorTitle: "Рассчитать ламинат",
         calculatorPage: Laminate()
+    ),
+    ConcreteMaterial(
+        title: "Наливной пол",
+        calculatorTitle: "Рассчитать наливной пол",
+        calculatorPage: LeveringFloor()
     ),
   ];
 }
