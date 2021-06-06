@@ -14,9 +14,9 @@ class _LeveringFloorState extends State<LeveringFloor> {
   int _heightDifference = 0;
   double _mixtureDensity = 1.5;
 
-  double _neededSacs() => (_floorWidth * _floorLength) * (_height + _heightDifference/2) * _mixtureDensity;
-
   int _floorSquare() => _floorLength * _floorWidth;
+
+  double _neededSacs() => _floorSquare() * (_height * _heightDifference/2) * _mixtureDensity;
 
   @override
   Widget build(BuildContext context) {
