@@ -15,6 +15,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   List<ConcreteMaterial> _filteredMaterials = [];
 
+  @override
   void initState() {
     _filteredMaterials = _materials;
   }
