@@ -5,6 +5,7 @@ import '../calculators/floor_tile.dart';
 import '../calculators/wallpapers.dart';
 import '../calculators/walls_tile.dart';
 import '../calculators/levering_floor.dart';
+import '../calculators/parquet.dart';
 
 class ConstructionMaterials {
   List<ConcreteMaterial> calculators = [
@@ -32,6 +33,11 @@ class ConstructionMaterials {
         title: "Наливной пол",
         calculatorTitle: "Рассчитать наливной пол",
         calculatorPage: LeveringFloor()
+    ),
+    ConcreteMaterial(
+        title: "Паркет для пола",
+        calculatorTitle: "Рассчитать паркет",
+        calculatorPage: Parquet()
     ),
   ];
 }
