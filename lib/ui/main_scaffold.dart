@@ -16,8 +16,10 @@ class _MainScaffoldState extends State<MainScaffold> {
   List<ConcreteMaterial> _filteredMaterials = [];
 
   @override
+  // ignore: must_call_super
   void initState() {
     _filteredMaterials = _materials;
+    super.initState();
   }
 
   TextEditingController _controller = TextEditingController();

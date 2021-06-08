@@ -35,7 +35,7 @@ class _LaminateState extends State<Laminate> {
                 controllerText: _floorLength.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _floorLength = int.parse(value);
                     },
                   );
@@ -49,7 +49,7 @@ class _LaminateState extends State<Laminate> {
                 controllerText: _floorWidth.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _floorWidth = int.parse(value);
                     },
                   );
@@ -63,7 +63,7 @@ class _LaminateState extends State<Laminate> {
                 controllerText: _tileLength.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _tileLength = int.parse(value);
                     },
                   );
@@ -77,7 +77,7 @@ class _LaminateState extends State<Laminate> {
                 controllerText: _tileWidth.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _tileWidth = int.parse(value);
                     },
                   );
@@ -91,7 +91,7 @@ class _LaminateState extends State<Laminate> {
                 controllerText: _reserve.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _reserve = int.parse(value);
                     },
                   );
@@ -109,7 +109,7 @@ class _LaminateState extends State<Laminate> {
         ),
         AddToPurchasesButton(
           type:
-          "${conjugateNumber(_neededTiles().ceil(), "Панель", "Панели", "Панелей")} ламината ${(_floorSquare()/100).ceil()}м^2",
+              "${conjugateNumber(_neededTiles().ceil(), "Панель", "Панели", "Панелей")} ламината ${(_floorSquare() / 100).ceil()}м^2",
           quantity: _neededTiles().ceil(),
         ),
       ],
