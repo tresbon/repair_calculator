@@ -199,7 +199,7 @@ class AddToPurchasesButton extends StatelessWidget {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Добавить в покупки'),
+            title: const Text('Добавить в смету'),
             content: SingleChildScrollView(
               child: TextField(
                 controller: _purchaseController,

@@ -17,7 +17,7 @@ class _PurchasesListState extends State<PurchasesList> {
     loadPurchases();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Список покупок"),
+        title: Text("Смета"),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),

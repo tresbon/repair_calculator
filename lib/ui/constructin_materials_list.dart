@@ -12,7 +12,7 @@ import '../calculators/linoleum.dart';
 class ConstructionMaterials {
   List<ConcreteMaterial> calculators = [
     ConcreteMaterial(
-      title: "Обои",
+      title: "Обои для стен",
       calculatorTitle: "Рассчитать обои",
       calculatorPage: Wallpapers()
     ),

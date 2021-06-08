@@ -41,7 +41,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PurchasesList()));
                 },
-                child: Text("Список покупок",
+                child: Text("Смета",
                 style: TextStyle(
                   fontSize: 17
                 ),))
@@ -107,7 +107,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                       MaterialPageRoute(builder: (context) => PurchasesList()));
                 },
                 child: Text(
-                  "Список покупок",
+                  "Смета",
                   style: TextStyle(fontSize: 17),
                 )),
           ],
