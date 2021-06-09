@@ -60,7 +60,11 @@ class CalculatorInput extends StatelessWidget {
   final String controllerText;
 
   CalculatorInput(
-      {this.pattern, this.maxLength, this.keyboardType, this.onChanged, this.controllerText});
+      {this.pattern,
+      this.maxLength,
+      this.keyboardType,
+      this.onChanged,
+      this.controllerText});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +108,6 @@ class CalculatorCheckbox extends StatelessWidget {
 
   CalculatorCheckbox({this.value, this.onChanged});
 
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -122,7 +125,9 @@ class CalculatorCheckbox extends StatelessWidget {
 
 class HowCounted extends StatelessWidget {
   final String countExplanation;
+
   HowCounted({this.countExplanation});
+
   @override
   Widget build(BuildContext context) {
     Future<void> _showMyDialog() async {
@@ -133,7 +138,8 @@ class HowCounted extends StatelessWidget {
           return AlertDialog(
             title: const Text('Алгоритм расчёта'),
             content: SingleChildScrollView(
-              child: Text(countExplanation,
+              child: Text(
+                countExplanation,
                 softWrap: true,
                 maxLines: 100,
               ),
@@ -150,30 +156,29 @@ class HowCounted extends StatelessWidget {
         },
       );
     }
+
     return InkWell(
       child: Center(
         child: Text(
           "алгоритм расчёта",
-          style: (
-          TextStyle(
-            fontSize: 15,
-            decoration: TextDecoration.underline
-          )
-          ),
+          style:
+              (TextStyle(fontSize: 15, decoration: TextDecoration.underline)),
         ),
       ),
-      onTap: () {_showMyDialog();},
+      onTap: () {
+        _showMyDialog();
+      },
     );
   }
 }
 
 conjugateNumber(int number, String one, String twoFive, String sixNine) {
-  if ([for(var i=11; i<20; i+=1) i].contains(number)) {
+  if ([for (var i = 11; i < 20; i += 1) i].contains(number)) {
     return sixNine;
   }
   if (number % 10 == 1) {
     return one;
-  } else if ([2,3,4,5].contains(number % 10)) {
+  } else if ([2, 3, 4, 5].contains(number % 10)) {
     return twoFive;
   } else {
     return sixNine;
@@ -183,15 +188,19 @@ conjugateNumber(int number, String one, String twoFive, String sixNine) {
 class AddToPurchasesButton extends StatelessWidget {
   final int quantity;
   final String type;
+
   AddToPurchasesButton({this.quantity, this.type});
+
   @override
   Widget build(BuildContext context) {
     DB db = DB();
     Future savePurchase(Purchase purchase) async {
       await db.openDb();
       await db.updatePurchase(purchase);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Покупка сохранена")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Сохранено в смету")));
     }
+
     TextEditingController _purchaseController = TextEditingController();
     Future<void> addPurchaseDialog() async {
       return showDialog<void>(
@@ -221,8 +230,7 @@ class AddToPurchasesButton extends StatelessWidget {
                       id: 0,
                       type: type,
                       quantity: quantity,
-                      comment: _purchaseController.text
-                  ));
+                      comment: _purchaseController.text));
                   _purchaseController.clear();
                 },
               ),
@@ -231,22 +239,22 @@ class AddToPurchasesButton extends StatelessWidget {
         },
       );
     }
+
     return Padding(
       padding: const EdgeInsets.all(40.0),
-      child: ElevatedButton(onPressed: () {
-        if (quantity > 0) {
-          addPurchaseDialog();
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Можно сохранить количество больше 0")));
-        }
-      }, child: Text("Сохранить в покупки",
-      style: TextStyle(
-        fontSize: 17
-      ),)),
+      child: ElevatedButton(
+          onPressed: () {
+            if (quantity > 0) {
+              addPurchaseDialog();
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("Можно сохранить количество больше 0")));
+            }
+          },
+          child: Text(
+            "Добавить в смету",
+            style: TextStyle(fontSize: 17),
+          )),
     );
   }
 }
-
-
-
-
