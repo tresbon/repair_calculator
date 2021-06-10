@@ -12,40 +12,33 @@ import '../calculators/linoleum.dart';
 class ConstructionMaterials {
   List<ConcreteMaterial> calculators = [
     ConcreteMaterial(
-      title: "Обои для стен",
-      calculatorTitle: "Рассчитать обои",
-      calculatorPage: Wallpapers()
-    ),
+        title: "Обои для стен",
+        calculatorTitle: "Рассчитать обои",
+        calculatorPage: Wallpapers()),
     ConcreteMaterial(
         title: "Плитка для пола",
         calculatorTitle: "Рассчитать плитку для пола",
-        calculatorPage: FloorTile()
-    ),
+        calculatorPage: FloorTile()),
     ConcreteMaterial(
         title: "Плитка для стен",
         calculatorTitle: "Рассчитать плитку для стен",
-        calculatorPage: WallsTile()
-    ),
+        calculatorPage: WallsTile()),
     ConcreteMaterial(
         title: "Ламинат",
         calculatorTitle: "Рассчитать ламинат",
-        calculatorPage: Laminate()
-    ),
+        calculatorPage: Laminate()),
     ConcreteMaterial(
         title: "Наливной пол",
         calculatorTitle: "Рассчитать наливной пол",
-        calculatorPage: LeveringFloor()
-    ),
+        calculatorPage: LeveringFloor()),
     ConcreteMaterial(
         title: "Паркет для пола",
         calculatorTitle: "Рассчитать паркет",
-        calculatorPage: Parquet()
-    ),
+        calculatorPage: Parquet()),
     ConcreteMaterial(
         title: "Линолеум для пола",
         calculatorTitle: "Рассчитать линолеум",
-        calculatorPage: Linoleum()
-    ),
+        calculatorPage: Linoleum()),
   ];
 }
 
@@ -53,5 +46,6 @@ class ConcreteMaterial {
   final String title;
   final String calculatorTitle;
   final Widget calculatorPage;
+
   ConcreteMaterial({this.title, this.calculatorTitle, this.calculatorPage});
 }
