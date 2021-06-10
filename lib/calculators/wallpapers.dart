@@ -23,54 +23,52 @@ class _WallpapersState extends State<Wallpapers> {
 
   int _neededStripes() => (_wallsLength() / _wallpapersWidth).ceil();
 
-  int _neededRolls() =>
-      _stripesFromRoll() != 0 ? (_neededStripes() / _stripesFromRoll()).ceil() : 0;
+  int _neededRolls() => _stripesFromRoll() != 0
+      ? (_neededStripes() / _stripesFromRoll()).ceil()
+      : 0;
 
   @override
   Widget build(BuildContext context) {
     return ListView(shrinkWrap: true, children: [
       CalculatorField(
-        header: "Длина комнаты, см",
-        child: CalculatorInput(
-          pattern: RegExp(r"\d"),
-          maxLength: 4,
-          keyboardType: TextInputType.number,
-          controllerText: _length.toString(),
-          onChanged: (s) => {
-            setState(() {
-              _length = double.tryParse(s) ?? 0;
-            } )
-          },
-        )
-      ),
+          header: "Длина комнаты, см",
+          child: CalculatorInput(
+            pattern: RegExp(r"\d"),
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            controllerText: _length.toString(),
+            onChanged: (s) => {
+              setState(() {
+                _length = double.tryParse(s) ?? 0;
+              })
+            },
+          )),
       CalculatorField(
-        header: "Ширина комнаты, см",
-        child: CalculatorInput(
-          pattern: RegExp(r"\d"),
-          maxLength: 4,
-          keyboardType: TextInputType.number,
-          controllerText: _width.toString(),
-          onChanged: (s) => {
-            setState(() {
-              _width = double.tryParse(s) ?? 0;
-            } )
-          },
-        )
-      ),
+          header: "Ширина комнаты, см",
+          child: CalculatorInput(
+            pattern: RegExp(r"\d"),
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            controllerText: _width.toString(),
+            onChanged: (s) => {
+              setState(() {
+                _width = double.tryParse(s) ?? 0;
+              })
+            },
+          )),
       CalculatorField(
-        header: "Высота комнаты, см",
-        child: CalculatorInput(
-          pattern: RegExp(r"\d"),
-          maxLength: 3,
-          keyboardType: TextInputType.number,
-          controllerText: _height.toString(),
-          onChanged: (s) => {
-            setState(() {
-              _height = double.tryParse(s) ?? 0;
-            } )
-          },
-        )
-      ),
+          header: "Высота комнаты, см",
+          child: CalculatorInput(
+            pattern: RegExp(r"\d"),
+            maxLength: 3,
+            keyboardType: TextInputType.number,
+            controllerText: _height.toString(),
+            onChanged: (s) => {
+              setState(() {
+                _height = double.tryParse(s) ?? 0;
+              })
+            },
+          )),
       CalculatorField(
         header: "Ширина рулона, м",
         child: Column(
@@ -149,7 +147,8 @@ class _WallpapersState extends State<Wallpapers> {
         """,
       ),
       AddToPurchasesButton(
-        type: "${conjugateNumber(_neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев ${(_wallsLength() / 100 * _height / 100).ceil()}м^2",
+        type:
+            "${conjugateNumber(_neededRolls(), "Рулон", "Рулона", "Рулонов")} обоев ${(_wallsLength() / 100 * _height / 100).ceil()}м^2",
         quantity: _neededRolls(),
       )
     ]);
