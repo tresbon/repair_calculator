@@ -20,7 +20,8 @@ class _WallsTilesState extends State<WallsTile> {
   int _ceilSquare() => _tileLength * _tileWidth;
 
   int _neededTiles() => _ceilSquare() > 0
-      ? (((100 + _reserve)/100) * _wallsLength() * _height / _ceilSquare()).ceil()
+      ? (((100 + _reserve) / 100) * _wallsLength() * _height / _ceilSquare())
+          .ceil()
       : 0;
 
   @override
@@ -33,7 +34,7 @@ class _WallsTilesState extends State<WallsTile> {
             maxLength: 4,
             keyboardType: TextInputType.number,
             controllerText: _length.toString(),
-            onChanged: (s)  {
+            onChanged: (s) {
               setState(() {
                 _length = int.tryParse(s) ?? 0;
               });

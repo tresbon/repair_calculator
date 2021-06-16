@@ -16,7 +16,8 @@ class _LeveringFloorState extends State<LeveringFloor> {
 
   int _floorSquare() => _floorLength * _floorWidth;
 
-  double _neededSacs() => _floorSquare() * (_height * _heightDifference/2) * _mixtureDensity;
+  double _neededSacs() =>
+      _floorSquare() * (_height * _heightDifference / 2) * _mixtureDensity;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _LeveringFloorState extends State<LeveringFloor> {
                 controllerText: _floorLength.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _floorLength = int.parse(value);
                     },
                   );
@@ -45,7 +46,7 @@ class _LeveringFloorState extends State<LeveringFloor> {
                 controllerText: _floorWidth.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
+                    () {
                       _floorWidth = int.parse(value);
                     },
                   );
@@ -59,8 +60,8 @@ class _LeveringFloorState extends State<LeveringFloor> {
                 controllerText: _height.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
-                          _height = int.parse(value);
+                    () {
+                      _height = int.parse(value);
                     },
                   );
                 })),
@@ -73,8 +74,8 @@ class _LeveringFloorState extends State<LeveringFloor> {
                 controllerText: _heightDifference.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
-                          _heightDifference = int.parse(value);
+                    () {
+                      _heightDifference = int.parse(value);
                     },
                   );
                 })),
@@ -87,8 +88,8 @@ class _LeveringFloorState extends State<LeveringFloor> {
                 controllerText: _mixtureDensity.toString(),
                 onChanged: (value) {
                   setState(
-                        () {
-                          _mixtureDensity = double.parse(value);
+                    () {
+                      _mixtureDensity = double.parse(value);
                     },
                   );
                 })),
@@ -105,7 +106,7 @@ class _LeveringFloorState extends State<LeveringFloor> {
         ),
         AddToPurchasesButton(
           type:
-          "${conjugateNumber(_neededSacs().ceil(), "Мешок", "Мешка", "Мешков")} наливного пола ${(_floorSquare()/100).ceil()}м^2",
+              "${conjugateNumber(_neededSacs().ceil(), "Мешок", "Мешка", "Мешков")} наливного пола ${(_floorSquare() / 100).ceil()}м^2",
           quantity: _neededSacs().ceil(),
         ),
       ],
