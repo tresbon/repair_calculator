@@ -30,21 +30,20 @@ class _MainScaffoldState extends State<MainScaffold> {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(child: Text(
+            DrawerHeader(
+                child: Text(
               "Меню",
-              style: TextStyle(
-                fontSize: 17
-              ),
+              style: TextStyle(fontSize: 17),
             )),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PurchasesList()));
                 },
-                child: Text("Смета",
-                style: TextStyle(
-                  fontSize: 17
-                ),))
+                child: Text(
+                  "Смета",
+                  style: TextStyle(fontSize: 17),
+                ))
           ],
         ),
       ),
@@ -58,19 +57,16 @@ class _MainScaffoldState extends State<MainScaffold> {
             TextField(
               controller: _controller,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    _controller.clear();
-                    _searchResults.clear();
-                    _filteredMaterials = _materials;
-                    setState(() {
-
-                    });
-                  },
-                )
-              ),
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.clear),
+                    onPressed: () {
+                      _controller.clear();
+                      _searchResults.clear();
+                      _filteredMaterials = _materials;
+                      setState(() {});
+                    },
+                  )),
               onChanged: (s) {
                 _searchResults.clear();
 

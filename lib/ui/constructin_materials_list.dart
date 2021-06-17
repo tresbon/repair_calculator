@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:repair_calculator/calculators/linoleum.dart';
-import '../calculators/laminate.dart';
+
 import '../calculators/floor_tile.dart';
+import '../calculators/laminate.dart';
+import '../calculators/levering_floor.dart';
+import '../calculators/linoleum.dart';
+import '../calculators/parquet.dart';
 import '../calculators/wallpapers.dart';
 import '../calculators/walls_tile.dart';
-import '../calculators/levering_floor.dart';
-import '../calculators/parquet.dart';
-import '../calculators/linoleum.dart';
 
 class ConstructionMaterials {
   List<ConcreteMaterial> calculators = [

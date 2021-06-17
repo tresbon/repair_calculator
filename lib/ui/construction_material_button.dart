@@ -5,7 +5,10 @@ class ConstructionMaterialButton extends StatelessWidget {
   final String calculatorTitle;
   final String title;
   final Widget calculatorPage;
-  ConstructionMaterialButton({this.title, this.calculatorTitle, this.calculatorPage});
+
+  ConstructionMaterialButton(
+      {this.title, this.calculatorTitle, this.calculatorPage});
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -14,10 +17,13 @@ class ConstructionMaterialButton extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => RepairCalculator(
-                    title: calculatorTitle,
-                    child: calculatorPage,
-                  )));
+                        title: calculatorTitle,
+                        child: calculatorPage,
+                      )));
         },
-        child: Text(title,style: TextStyle(fontSize: 17),));
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 17),
+        ));
   }
 }

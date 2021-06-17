@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class RepairCalculator extends StatelessWidget {
   final String title;
   final Widget child;
+
   RepairCalculator({this.title, this.child});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

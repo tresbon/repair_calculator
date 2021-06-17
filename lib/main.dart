@@ -11,11 +11,10 @@ class RepairCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Калькулятор ремонта',
-      theme: ThemeData(
-        primarySwatch: Colors.lime,
-      ),
-      home: MainScaffold()
-    );
+        title: 'Калькулятор ремонта',
+        theme: ThemeData(
+          primarySwatch: Colors.lime,
+        ),
+        home: MainScaffold());
   }
 }
