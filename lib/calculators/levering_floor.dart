@@ -8,9 +8,9 @@ class LeveringFloor extends StatefulWidget {
 }
 
 class _LeveringFloorState extends State<LeveringFloor> {
-  int _floorLength = 0;
-  int _floorWidth = 0;
-  int _height = 0;
+  int _floorLength = 400;
+  int _floorWidth = 300;
+  int _height = 2;
   int _heightDifference = 0;
   double _mixtureDensity = 1.5;
 
