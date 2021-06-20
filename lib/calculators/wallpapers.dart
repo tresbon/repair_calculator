@@ -8,9 +8,9 @@ class Wallpapers extends StatefulWidget {
 }
 
 class _WallpapersState extends State<Wallpapers> {
-  double _width = 0;
-  double _length = 0;
-  double _height = 0;
+  double _width = 300;
+  double _length = 400;
+  double _height = 230;
   double _wallpapersWidth = 53;
   double _wallpapersLength = 1000;
   bool _inJoint = false;
