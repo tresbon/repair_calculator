@@ -8,8 +8,8 @@ class Parquet extends StatefulWidget {
 }
 
 class _ParquetState extends State<Parquet> {
-  int _floorLength = 0;
-  int _floorWidth = 0;
+  int _floorLength = 300;
+  int _floorWidth = 400;
   int _tileLength = 45;
   int _tileWidth = 45;
   int _reserve = 10;
